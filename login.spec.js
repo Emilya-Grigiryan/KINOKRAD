@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("Login, logout, and close the browser", async ({ page }) => {
-    // Generate random username and password directly in the test
+    // Generate  username and password directly in the test
     const Username = "acer.user"; //  username
     const Password = "asdfghjkl"; // password
 
