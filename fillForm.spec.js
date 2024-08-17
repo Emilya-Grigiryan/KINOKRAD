@@ -74,4 +74,6 @@ test("Complete registration, login, logout, and re-login with additional fields"
     // Wait for the new section to appear after re-login
     await page.waitForLoadState('networkidle'); // Wait until the page is fully loaded
     await expect(profileLink).toBeVisible();
+
+    console.log("Test completed successfully.");
 });
