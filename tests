@@ -1,0 +1,24 @@
+import { test, expect } from "@playwright/test";
+
+test.beforeEach(async ({ page }) => {
+    console.log("Starting navigation");
+    await page.goto("https://kinokrad.ac/");
+});
+
+test("Click on Регистрация button and fill out the registration form", async ({ page }) => {
+    await page.locator('a[href="https://kinokrad.ac/index.php?do=register"]').click();
+
+    const loginField = page.locator('//td[contains(., "Логин:")]/following-sibling::td/input[@name="name"]');
+    const passwordField = page.locator('//td[contains(., "Пароль:")]/following-sibling::td/input[@type="password"]');
+    const repeatPasswordField = page.locator('//td[contains(., "Повторите пароль:")]/following-sibling::td/input[@name="password2"]');
+    const emailField = page.locator('//td[contains(., "Ваш E-Mail:")]/following-sibling::td/input[@name="email"]');
+
+    await loginField.fill("Logi0n");
+    await passwordField.fill("Pa0ssword123");
+    await repeatPasswordField.fill("Pa0ssword123");
+    await emailField.fill("example@exam0ple.com");
+
+    const submitBtn = page.locator('button[name="submit"].fbutton');
+    await submitBtn.click();
+})
+
