@@ -1,0 +1,35 @@
+import { test, expect } from "@playwright/test";
+
+test.beforeEach(async ({ page }) => {
+    console.log("Starting navigation");
+    await page.goto("https://kinokrad.ac/");
+});
+
+test("Registration form validation with incorrect data", async ({ page }) => {
+    await page.locator('a[href="https://kinokrad.ac/index.php?do=register"]').click();
+
+    await page.waitForLoadState('networkidle');
+
+    const loginField = page.locator('//td[contains(., "Логин:")]/following-sibling::td/input[@name="name"]');
+    const passwordField = page.locator('//td[contains(., "Пароль:")]/following-sibling::td/input[@type="password"]');
+    const repeatPasswordField = page.locator('//td[contains(., "Повторите пароль:")]/following-sibling::td/input[@name="password2"]');
+    const emailField = page.locator('//td[contains(., "Ваш E-Mail:")]/following-sibling::td/input[@name="email"]');
+
+    await loginField.fill("--");
+    await passwordField.fill("***");
+    await repeatPasswordField.fill("***");
+    await emailField.fill("invalid/e-mail");
+
+    const submitBtn = page.locator('button[name="submit"].fbutton');
+    await submitBtn.click();
+
+    const loginError = page.locator('text=Логин не может быть менее 3 символов и более 40 символов');
+    const passwordError = page.locator('text=Длина пароля должна быть не менее 6 символов и не более 72 символов');
+    const emailError = page.locator('text=Введён неверный e-mail адрес!');
+    const nameError = page.locator('text=Недопустимая длина имени');
+
+    await expect(loginError).toBeVisible();
+    await expect(passwordError).toBeVisible();
+    await expect(emailError).toBeVisible();
+    await expect(nameError).toBeVisible();
+});
