@@ -2,8 +2,8 @@ import { test, expect } from "@playwright/test";
 
 test("Login, logout, and close the browser", async ({ page }) => {
     // Generate random username and password directly in the test
-    const Username = "acer.user"; // Random username
-    const Password = "asdfghjkl"; // Random password
+    const Username = "acer.user"; //  username
+    const Password = "asdfghjkl"; // password
 
     // Navigate to the main page
     await page.goto("https://kinokrad.ac/");
