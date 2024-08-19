@@ -10,10 +10,10 @@ test("Registration form validation with incorrect data", async ({ page }) => {
 
     await page.waitForLoadState('networkidle');
 
-    const loginField = page.locator('//td[contains(., "Логин:")]/following-sibling::td/input[@name="name"]');
-    const passwordField = page.locator('//td[contains(., "Пароль:")]/following-sibling::td/input[@type="password"]');
-    const repeatPasswordField = page.locator('//td[contains(., "Повторите пароль:")]/following-sibling::td/input[@name="password2"]');
-    const emailField = page.locator('//td[contains(., "Ваш E-Mail:")]/following-sibling::td/input[@name="email"]');
+    const loginField = page.locator("#name");
+    const passwordField = page.locator('[name="password1"]');
+    const repeatPasswordField = page.locator('[name="password2"]');
+    const emailField = page.locator('[name="email"]');
 
     await loginField.fill("--");
     await passwordField.fill("***");
