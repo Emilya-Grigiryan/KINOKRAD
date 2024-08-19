@@ -33,3 +33,4 @@ test("Registration form validation with incorrect data", async ({ page }) => {
     await expect(emailError).toBeVisible();
     await expect(nameError).toBeVisible();
 });
+
